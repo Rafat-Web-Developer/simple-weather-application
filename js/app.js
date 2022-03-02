@@ -15,9 +15,13 @@ const getDataFromApi = async (getLocation) => {
 
 const displayWeather = weather => {
     console.log(weather);
+    const url = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
+    const weather_mode_icon = document.getElementById('weather_mode_icon');
+    weather_mode_icon.setAttribute('src', url);
     setInnerText('city_name', weather.name);
     setInnerText('city_current_temp', weather.main.temp);
     setInnerText('weather_mode', weather.weather[0].main);
+    
 };
 
 const setInnerText = (getId, value) => {
