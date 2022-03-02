@@ -28,12 +28,42 @@ const getDataFromApi = async (getLocation) => {
 };
 
 const displayWeather = weather => {
+    const mode = weather.weather[0].main;
+    switch(mode){
+        case 'Drizzle':
+            document.getElementById('body').style.background = `url('images/rain.jpg')`;
+            document.getElementById('body').style.backgroundRepeat = `no-repeat`;
+            document.getElementById('body').style.backgroundSize = `cover`;
+            break;
+        case 'Haze':
+            document.getElementById('body').style.background = `url('images/haze.jpg')`;
+            document.getElementById('body').style.backgroundRepeat = `no-repeat`;
+            document.getElementById('body').style.backgroundSize = `cover`;
+            break;
+        case 'Rain':
+            document.getElementById('body').style.background = `url('images/rain.jpg')`;
+            document.getElementById('body').style.backgroundRepeat = `no-repeat`;
+            document.getElementById('body').style.backgroundSize = `cover`;
+            break;
+        case 'Clouds':
+            document.getElementById('body').style.background = `url('images/cloud.jpg')`;
+            document.getElementById('body').style.backgroundRepeat = `no-repeat`;
+            document.getElementById('body').style.backgroundSize = `cover`;
+            break;
+        default:
+            document.getElementById('body').style.background = `url('images/bg-image.jpg')`;
+            document.getElementById('body').style.backgroundRepeat = `no-repeat`;
+            document.getElementById('body').style.backgroundSize = `cover`;
+            break;
+            
+    }
+    console.log(weather);
     const url = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
     const weather_mode_icon = document.getElementById('weather_mode_icon');
     weather_mode_icon.setAttribute('src', url);
     setInnerText('city_name', weather.name);
     setInnerText('city_current_temp', weather.main.temp);
-    setInnerText('weather_mode', weather.weather[0].main);
+    setInnerText('weather_mode', mode);
     
 };
 
