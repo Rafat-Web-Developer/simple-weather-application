@@ -29,11 +29,19 @@
                 </div>
             </div>
         </form>
-        <div class="weather-status text-white text-center">
+        <div id="showLoadingDiv" class="d-none">
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-danger" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                </button>
+            </div>
+        </div>
+        <div id="showWeatherDiv" class="weather-status text-white text-center">
             <img src="https://openweathermap.org/img/wn/02d@2x.png" id="weather_mode_icon" alt="">
-            <h1 id="city_name">Dhaka</h1>
-            <h3><span id="city_current_temp">38.06</span>&deg;C</h3>
-            <h1 class="lead" id="weather_mode">Clouds</h1>
+            <h1 id="city_name">City Name</h1>
+            <h3><span id="city_current_temp">0.00</span>&deg;C</h3>
+            <h1 class="lead" id="weather_mode">Weather Mode</h1>
         </div>
     </div>
 
