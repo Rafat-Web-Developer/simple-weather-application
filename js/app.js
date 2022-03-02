@@ -17,14 +17,23 @@ const searchWeather = () => {
     getDataFromApi(searchLocation);
 };
 const getDataFromApi = async (getLocation) => {
+    hideElement('not_found');
     hideElement('showWeatherDiv');
     showElement('showLoadingDiv');
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${getLocation}&appid=${API_KEY}&units=metric`;
     const res = await fetch(url);
     const data = await res.json();
-    hideElement('showLoadingDiv');
-    showElement('showWeatherDiv');
-    displayWeather(data);
+    if(data.cod === '404'){
+        hideElement('showWeatherDiv');
+        hideElement('showLoadingDiv');
+        showElement('not_found');
+    }else{
+        hideElement('not_found');
+        hideElement('showLoadingDiv');
+        showElement('showWeatherDiv');
+        displayWeather(data);
+    }
+    
 };
 
 const displayWeather = weather => {
@@ -37,6 +46,11 @@ const displayWeather = weather => {
             break;
         case 'Haze':
             document.getElementById('body').style.background = `url('images/haze.jpg')`;
+            document.getElementById('body').style.backgroundRepeat = `no-repeat`;
+            document.getElementById('body').style.backgroundSize = `cover`;
+            break;
+        case 'Snow':
+            document.getElementById('body').style.background = `url('images/snow.jpg')`;
             document.getElementById('body').style.backgroundRepeat = `no-repeat`;
             document.getElementById('body').style.backgroundSize = `cover`;
             break;
